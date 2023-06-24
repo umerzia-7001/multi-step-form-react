@@ -1,0 +1,68 @@
+$primary-color: #2c71eb;
+$secondary-color: #4680e7;
+$bg-container: #d7e2fa60;
+$background-color: #fff;
+$font-color: #1d2130;
+$font-color-light: #1d2130bf;
+$info-color: #6b7280;
+$info-color-light: #9e9e9e;
+$info-color-lighter: #bdbdbd;
+$error-color: #f44336;
+$error-color-light: #ff7961;
+$error-color-lighter: #ffcdd2;
+$warning-color: #fdd003;
+$disclaimer-color: rgba(28, 33, 41, 0.55);
+$warning-color-light: #ffb74d;
+$warning-color-lighter: #ffe0b2;
+$success-color: #4caf50;
+$success-color-light: #81c784;
+$success-color-lighter: #c8e6c9;
+
+$screen-xs-max: 480px;
+$screen-sm-max: 768px;
+$screen-md-max: 992px;
+$screen-lg-max: 1200px;
+$screen-xl-max: 1600px;
+
+$screen-xs-min: 150px;
+$screen-sm-min: 200px;
+$screen-md-min: 300px;
+$screen-xl-min: 800px;
+
+$form-width-small: 60%;
+$form-width-medium: 70%;
+$form-width-large: 80%;
+
+$form-height-small: 20%;
+$form-height-medium: 40%;
+$form-height-large: 50%;
+
+@mixin xs {
+  @media (min-width: $screen-xs-min), (max-width: #{$screen-xs-max}) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (min-width: $screen-sm-min), (max-width: #{$screen-sm-max}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: $screen-md-min), (max-width: #{$screen-md-max}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (max-width: #{$screen-lg-max}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (max-width: #{$screen-xl-max}), (min-width: $screen-xl-min) {
+    @content;
+  }
+}

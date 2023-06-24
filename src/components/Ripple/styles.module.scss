@@ -1,0 +1,31 @@
+.rippleSpan {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+}
+
+.ripple {
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.5s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 0.3;
+    transform: scale(0);
+  }
+  65% {
+    transform: scale(2);
+    opacity: 0.2;
+  }
+  90% {
+    transform: scale(5);
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

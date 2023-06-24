@@ -1,0 +1,46 @@
+@import "Styles/variable.scss";
+
+@mixin typography($size: 1rem, $weight: 400) {
+  font-size: $size;
+  font-weight: $weight;
+}
+
+.h1 {
+  @include typography(2.5rem, 700);
+}
+
+.h2 {
+  @include typography(2rem, 700);
+}
+
+.h3 {
+  @include typography(1.5rem, 700);
+}
+
+.h4 {
+  @include typography(1.25rem, 700);
+}
+
+.h5 {
+  @include typography(1rem, 700);
+}
+
+.h6 {
+  @include typography(0.875rem, 700);
+}
+
+.p {
+  @include typography(1rem, 400);
+}
+
+.span {
+  @include typography(0.875rem, 400);
+}
+
+.label {
+  @include typography(0.875rem, 700);
+}
+
+.div {
+  @include typography(1rem, 700);
+}

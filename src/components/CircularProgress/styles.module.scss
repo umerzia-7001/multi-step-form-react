@@ -1,0 +1,83 @@
+@import "Styles/variable.scss";
+
+.container {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+}
+
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+
+.spinner::before {
+  animation: 0.9s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 3px transparent;
+  border-radius: 50%;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+}
+
+@mixin size($size) {
+  width: $size;
+  height: $size;
+}
+
+.smContainer {
+  @include size(20px);
+}
+
+.mdContainer {
+  @include size(36px);
+}
+
+.lgContainer {
+  @include size(46px);
+}
+
+.xlContainer {
+  @include size(60px);
+}
+
+.sm::before {
+  height: 20px;
+  width: 20px;
+  border-width: 2px;
+}
+
+.md::before {
+  height: 32px;
+  width: 32px;
+}
+
+.lg::before {
+  height: 44px;
+  width: 44px;
+  border-width: 4px;
+}
+
+.xl::before {
+  height: 60px;
+  width: 60px;
+  border-width: 6px;
+}
+
+.primary::before {
+  border-bottom-color: $primary-color;
+  border-right-color: $primary-color;
+}
+
+.info::before {
+  border-bottom-color: $info-color;
+  border-right-color: $info-color;
+}

@@ -1,0 +1,81 @@
+@import "./variable.scss";
+
+$mui-palette-primary-main: #6b7cff;
+$mui-palette-primary-light: #42a5f5;
+$mui-palette-theme-spacing: 8px;
+
+.body {
+  font-family: Roboto, sans-serif;
+  background-color: $background-color;
+  overflow-x: hidden;
+  * {
+    font-family: Roboto, sans-serif;
+  }
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #d1d8de;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $secondary-color;
+    border-radius: 5px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: $primary-color;
+  }
+  * {
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #d1d8de;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: $secondary-color;
+      border-radius: 5px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: $primary-color;
+    }
+  }
+}
+
+@mixin boxShadow {
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+}
+
+@mixin flex(
+  $direction: row,
+  $gap: 10px,
+  $padding: 10px,
+  $justify: center,
+  $align: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+  padding: $padding;
+  text-align: center;
+}
+@mixin button {
+  width: 40%;
+  height: 60px;
+  margin-left: 30%;
+  font-size: 22px;
+  font-weight: 500;
+  @include md {
+    width: 60%;
+    margin-left: 20%;
+  }
+  @include sm {
+    margin-left: 5%;
+    width: 90%;
+    height: 50px;
+    font-size: 16px;
+  }
+}
