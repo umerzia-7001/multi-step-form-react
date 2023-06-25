@@ -3,26 +3,31 @@ import styles from "./styles.module.scss";
 
 interface Selector {
   name?: string;
+  type?: string;
   value?: string;
   options: any[];
   register?: any;
-  error?: any;
   onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const DropDown: React.FC<Selector> = ({
   name,
+  type,
   value,
   options,
   register,
-  error,
   onChange,
 }) => {
   return (
-    <div className={`${styles.DropDown} ${!!error ? styles.error : ""}`}>
-      <select className={styles.select} {...register(name)} onChange={onChange}>
+    <div className={`${styles.DropDown} `}>
+      <select
+        type={name}
+        className={styles.select}
+        {...register(name)}
+        onChange={onChange}
+      >
         {options.map((option, index) => (
-          <option key={index}>{option.value}</option>
+          <option key={index}>{option}</option>
         ))}
       </select>
     </div>

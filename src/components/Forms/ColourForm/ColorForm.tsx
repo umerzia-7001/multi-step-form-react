@@ -1,48 +1,65 @@
-import styles from "../../styles/styles.module.scss";
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useFormData } from "../../context";
+import Button from "../../Button";
+import Selector from "../../Selector";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useColourSchema } from "../../../hooks/useFormValidationSchema";
+import { useFormData } from "../../../context";
 
-import styles from "../../../../styles/global.scss";
+import styles from "./styles.module.scss";
 
-interface CodeFormProps {
+interface ColourFormProps {
   formStep: number;
   nextFormStep: () => void;
 }
 
-export default function CodeForm({ formStep, nextFormStep }: CodeFormProps) {
+export default function ColourForm({
+  formStep,
+  nextFormStep,
+}: ColourFormProps) {
   const { setFormValues } = useFormData();
 
   const {
     handleSubmit,
     formState: { errors },
     register,
-  } = useForm<{ email: string }>({ mode: "all" });
+  } = useForm<{ colour: string }>({
+    mode: "all",
+    resolver: yupResolver(useColourSchema()),
+  });
 
-  const onSubmit = (values: { email: string }) => {
+  const onSubmit = (values: { colour: string }) => {
     setFormValues(values);
     nextFormStep();
   };
 
   return (
-    <div className={formStep === 0 ? styles.showForm : styles.hideForm}>
-      <h2>Personal Info</h2>
-
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={`${styles.Form} ${
+        formStep === 0 ? styles.showForm : styles.hideForm
+      }`}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className={styles.formCard}>
         <div className={styles.formField}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            {...register("email", {
-              required: true,
-            })}
+          <label htmlFor="colour">Colour</label>
+          <Selector
+            options={["BLUE", "BLACK", "RED", "ORANGE"]}
+            name="colour"
+            type="colour"
+            register={register}
           />
-          {errors.email && (
-            <p className={styles.errorText}>Email is required</p>
+
+          {errors.colour && (
+            <p className={styles.errorText}>
+              {errors.colour?.message as string}
+            </p>
           )}
         </div>
-        <button type="submit">Next</button>
-      </form>
-    </div>
+        <Button type="submit" className={styles.button} variant="contained">
+          Next
+        </Button>
+      </div>
+    </form>
   );
 }

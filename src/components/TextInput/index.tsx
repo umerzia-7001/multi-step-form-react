@@ -6,7 +6,6 @@ interface ITextProps {
   value: string;
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error?: any;
   showReset?: boolean;
   register?: any;
   disabled?: boolean;
@@ -20,7 +19,6 @@ const InputText: React.FC<ITextProps> = ({
   value,
   name,
   onChange,
-  error,
   showReset = false,
   disabled = false,
   placeholder = "",
@@ -40,7 +38,7 @@ const InputText: React.FC<ITextProps> = ({
       <input
         type="text"
         {...register(name)}
-        className={`${styles.input} ${!!error ? styles.error : ""}`}
+        className={`${styles.input}`}
         onChange={onChange}
         disabled={disabled}
         placeholder={placeholder}

@@ -4,8 +4,4 @@ interface IFormData {
   code: string;
 }
 
-interface ISelectedFieldsDisplay {
-  carDetails: IFormData;
-}
-
-export type { IFormData, ISelectedFieldsDisplay };
+export type { IFormData };

@@ -1,74 +1,68 @@
-const formSteps = [
-  {
-    field: {
-      title: "Make",
-      name: "make",
-      type: "select",
-      buttonText: "NEXT",
-      options: [
-        {
-          selected: true,
-          value: "AUDI",
-        },
-        {
-          selected: false,
-          value: "BMW",
-        },
-        {
-          selected: false,
-          value: "VAUXHAL",
-        },
-        {
-          selected: true,
-          value: "MERCEDEDS",
-        },
-        {
-          selected: false,
-          value: "PEUGOT",
-        },
-        {
-          selected: false,
-          value: "RENAULT",
-        },
-      ],
+function makeFormFields(index: number) {
+  const formFields = [
+    {
+      field: {
+        title: "Make",
+        name: "make",
+        type: "select",
+        buttonText: "NEXT",
+        options: ["AUDI", "BMW", "VAUXHAL", "MERCEDEDS", "PEUGOT", "RENAULT"],
+      },
     },
-  },
-  {
-    field: {
-      title: "Colour",
-      name: "colour",
-      type: "select",
-      buttonText: "NEXT",
-      options: [
-        {
-          selected: true,
-          value: "BLUE",
-        },
-        {
-          selected: false,
-          value: "RED",
-        },
+    {
+      field: {
+        title: "Colour",
+        name: "colour",
+        type: "select",
+        buttonText: "NEXT",
+        options: ["BLUE", "BLACK", "RED", "ORANGE"],
+      },
+    },
+    {
+      field: {
+        title: "Code",
+        name: "code",
+        type: "text",
+        buttonText: "DONE",
+        options: [],
+      },
+    },
+  ];
 
-        {
-          selected: false,
-          value: "BLACK",
-        },
-        {
-          selected: false,
-          value: "ORANGE",
-        },
-      ],
-    },
-  },
-  {
-    field: {
-      title: "Code",
-      name: "code",
-      type: "text",
-      buttonText: "DONE",
-      options: [],
-    },
-  },
-];
+  if (index >= 0 && index < formFields.length) {
+    return formFields[index];
+  } else {
+  }
+}
 
-export { formSteps };
+// const makeFormFields = [
+//   {
+//     field: {
+//       title: "Make",
+//       name: "make",
+//       type: "select",
+//       buttonText: "NEXT",
+//       options: ["AUDI", "BMW", "VAUXHAL", "MERCEDEDS", "PEUGOT", "RENAULT"],
+//     },
+//   },
+//   {
+//     field: {
+//       title: "Colour",
+//       name: "colour",
+//       type: "select",
+//       buttonText: "NEXT",
+//       options: ["BLUE", "BLACK", "RED", "ORANGE"],
+//     },
+//   },
+//   {
+//     field: {
+//       title: "Code",
+//       name: "code",
+//       type: "text",
+//       buttonText: "DONE",
+//       options: [],
+//     },
+//   },
+// ];
+
+export { makeFormFields };

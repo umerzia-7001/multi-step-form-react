@@ -1,0 +1,22 @@
+@import "Styles/variable.scss";
+@import "Styles/global.scss";
+
+.hideForm {
+  display: none;
+}
+
+.Form {
+  @include Form;
+}
+
+.formCard {
+  @include formCard;
+}
+
+.formField {
+  @include formField;
+}
+
+.errorText {
+  @include formErrorText;
+}

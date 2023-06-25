@@ -1,14 +1,13 @@
 import React from "react";
+import { useFormData } from "../../../context";
 
-import { ISelectedFieldsDisplay } from "../../../types/modules/form";
-
-const SelectedFieldsDisplay: React.FC<ISelectedFieldsDisplay> = ({
-  carDetails,
-}) => {
-  const { make, colour, code } = carDetails;
+const ResultDisplay: React.FC<any> = () => {
+  const { data } = useFormData();
+  const { make, colour, code } = data;
 
   return (
     <div className="car-details">
+      <pre>{JSON.stringify(data)}</pre>
       <p>
         I have a <span className="car-details__make">{make}</span> and the
         colour is <span className="car-details__colour">{colour}</span>.
@@ -21,4 +20,4 @@ const SelectedFieldsDisplay: React.FC<ISelectedFieldsDisplay> = ({
   );
 };
 
-export default SelectedFieldsDisplay;
+export default ResultDisplay;

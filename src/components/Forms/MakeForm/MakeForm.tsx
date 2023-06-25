@@ -1,7 +1,13 @@
+import React from "react";
 import { useForm } from "react-hook-form";
-import { useFormData } from "../../context";
+import Button from "../../Button";
+import Selector from "../../Selector";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useMakeSchema } from "../../../hooks/useFormValidationSchema";
+import { useFormData } from "../../../context";
+import { makeFormFields } from "../../../hooks/getFormSteps";
 
-import styles from "../../../../styles/global.scss";
+import styles from "./styles.module.scss";
 
 interface MakeFormProps {
   formStep: number;
@@ -15,33 +21,51 @@ export default function MakeForm({ formStep, nextFormStep }: MakeFormProps) {
     handleSubmit,
     formState: { errors },
     register,
-  } = useForm<{ email: string }>({ mode: "all" });
+  } = useForm<{ make: string }>({
+    mode: "all",
+    resolver: yupResolver(useMakeSchema()),
+  });
 
-  const onSubmit = (values: { email: string }) => {
+  const onSubmit = (values: { make: string }) => {
     setFormValues(values);
     nextFormStep();
   };
 
-  return (
-    <div className={formStep === 0 ? styles.showForm : styles.hideForm}>
-      <h2>Personal Info</h2>
+  const selectedFormData = makeFormFields(1);
+  console.log(selectedFormData);
 
-      <form styles={styles.Form} onSubmit={handleSubmit(onSubmit)}>
+  return (
+    <form
+      className={`${styles.Form} ${
+        formStep === 0 ? styles.showForm : styles.hideForm
+      }`}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className={styles.formCard}>
         <div className={styles.formField}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            {...register("email", {
-              required: true,
-            })}
+          <label htmlFor="make">Make</label>
+          <Selector
+            options={[
+              "AUDI",
+              "BMW",
+              "VAUXHAL",
+              "MERCEDEDS",
+              "PEUGOT",
+              "RENAULT",
+            ]}
+            name="make"
+            type="make"
+            register={register}
           />
-          {errors.email && (
-            <p className={styles.errorText}>Email is required</p>
+
+          {errors.make && (
+            <p className={styles.errorText}>{errors.make?.message as string}</p>
           )}
         </div>
-        <button type="submit">Next</button>
-      </form>
-    </div>
+        <Button type="submit" className={styles.button} variant="contained">
+          Next
+        </Button>
+      </div>
+    </form>
   );
 }
