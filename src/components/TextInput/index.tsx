@@ -4,9 +4,11 @@ import styles from "./styles.module.scss";
 
 interface ITextProps {
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  error?: boolean;
+  name: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: any;
   showReset?: boolean;
+  register?: any;
   disabled?: boolean;
   placeholder?: string;
   style?: React.CSSProperties;
@@ -16,6 +18,7 @@ interface ITextProps {
 
 const InputText: React.FC<ITextProps> = ({
   value,
+  name,
   onChange,
   error,
   showReset = false,
@@ -24,23 +27,24 @@ const InputText: React.FC<ITextProps> = ({
   style,
   className,
   rows,
+  register,
 }) => {
   const resetInput = () => {
     onChange({
       target: { value: "" },
-    } as React.ChangeEvent<HTMLTextAreaElement>);
+    } as React.ChangeEvent<HTMLInputElement>);
   };
 
   return (
     <div className={`${styles.inputText} ${className}`}>
-      <textarea
-        className={`${styles.input} ${error ? styles.error : ""}`}
-        value={value}
+      <input
+        type="text"
+        {...register(name)}
+        className={`${styles.input} ${!!error ? styles.error : ""}`}
         onChange={onChange}
         disabled={disabled}
         placeholder={placeholder}
         style={style}
-        rows={rows}
       />
       {showReset && (
         <Button className={styles.resetButton} onClick={resetInput}>

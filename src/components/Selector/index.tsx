@@ -2,23 +2,29 @@ import React from "react";
 import styles from "./styles.module.scss";
 
 interface Selector {
-  name: string;
-  options: string[];
+  name?: string;
+  value?: string;
+  options: any[];
   register?: any;
-  error?: string | undefined;
+  error?: any;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const DropDown: React.FC<Selector> = ({ name, options, register, error }) => {
+const DropDown: React.FC<Selector> = ({
+  name,
+  value,
+  options,
+  register,
+  error,
+  onChange,
+}) => {
   return (
-    <div className={styles.DropDown}>
-      <select>
+    <div className={`${styles.DropDown} ${!!error ? styles.error : ""}`}>
+      <select className={styles.select} {...register(name)} onChange={onChange}>
         {options.map((option, index) => (
-          <option key={index} value={option}>
-            {option}
-          </option>
+          <option key={index}>{option.value}</option>
         ))}
       </select>
-      {error && <span className={styles.error}>{error}</span>}
     </div>
   );
 };

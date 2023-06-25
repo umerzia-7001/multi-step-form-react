@@ -1,10 +1,11 @@
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  country: string;
-  city: string;
+interface IFormData {
+  make: string;
+  colour: string;
+  code: string;
 }
 
-export type { FormData };
+interface ISelectedFieldsDisplay {
+  carDetails: IFormData;
+}
+
+export type { IFormData, ISelectedFieldsDisplay };
