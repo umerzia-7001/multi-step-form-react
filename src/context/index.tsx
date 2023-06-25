@@ -6,7 +6,7 @@ import React, {
   Dispatch,
   SetStateAction,
 } from "react";
-import { IFormData } from "../types/modules/form";
+import { IFormData } from "../types/global";
 
 const initialData: any = {
   make: "AUDI",
@@ -15,8 +15,13 @@ const initialData: any = {
 };
 
 interface FormContextProps {
-  data: any;
+  data: IFormData;
+
   setFormValues: Dispatch<SetStateAction<any>>;
+}
+
+interface FormProviderProps {
+  children: ReactNode;
 }
 
 export const FormContext = createContext<FormContextProps>({
@@ -25,10 +30,6 @@ export const FormContext = createContext<FormContextProps>({
     // eslint-disable-next-line no-empty-function
   },
 });
-
-interface FormProviderProps {
-  children: ReactNode;
-}
 
 export default function FormProvider({
   children,

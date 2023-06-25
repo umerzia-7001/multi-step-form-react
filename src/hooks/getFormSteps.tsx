@@ -1,68 +1,39 @@
+interface IFormData {
+  options?: string[];
+  title: string;
+  name: string;
+  type: string;
+  buttonText: string;
+}
+
 function makeFormFields(index: number) {
-  const formFields = [
+  const formFields: IFormData[] = [
     {
-      field: {
-        title: "Make",
-        name: "make",
-        type: "select",
-        buttonText: "NEXT",
-        options: ["AUDI", "BMW", "VAUXHAL", "MERCEDEDS", "PEUGOT", "RENAULT"],
-      },
+      title: "Make",
+      name: "make",
+      type: "make",
+      buttonText: "NEXT",
+      options: ["AUDI", "BMW", "VAUXHAL", "MERCEDEDS", "PEUGOT", "RENAULT"],
     },
     {
-      field: {
-        title: "Colour",
-        name: "colour",
-        type: "select",
-        buttonText: "NEXT",
-        options: ["BLUE", "BLACK", "RED", "ORANGE"],
-      },
+      title: "Colour",
+      name: "colour",
+      type: "colour",
+      buttonText: "NEXT",
+      options: ["BLUE", "BLACK", "RED", "ORANGE"],
     },
     {
-      field: {
-        title: "Code",
-        name: "code",
-        type: "text",
-        buttonText: "DONE",
-        options: [],
-      },
+      title: "Code",
+      name: "code",
+      type: "code",
+      buttonText: "DONE",
+      options: [],
     },
   ];
 
   if (index >= 0 && index < formFields.length) {
     return formFields[index];
-  } else {
   }
 }
-
-// const makeFormFields = [
-//   {
-//     field: {
-//       title: "Make",
-//       name: "make",
-//       type: "select",
-//       buttonText: "NEXT",
-//       options: ["AUDI", "BMW", "VAUXHAL", "MERCEDEDS", "PEUGOT", "RENAULT"],
-//     },
-//   },
-//   {
-//     field: {
-//       title: "Colour",
-//       name: "colour",
-//       type: "select",
-//       buttonText: "NEXT",
-//       options: ["BLUE", "BLACK", "RED", "ORANGE"],
-//     },
-//   },
-//   {
-//     field: {
-//       title: "Code",
-//       name: "code",
-//       type: "text",
-//       buttonText: "DONE",
-//       options: [],
-//     },
-//   },
-// ];
 
 export { makeFormFields };

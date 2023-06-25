@@ -5,7 +5,8 @@ import TextInput from "../../TextInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useFormData } from "../../../context";
 import { useCodeSchema } from "../../../hooks/useFormValidationSchema";
-import { IFormData } from "../../../types/modules/form";
+import { makeFormFields } from "../../../hooks/getFormSteps";
+import { IFormData } from "../../../types/global";
 
 import styles from "./styles.module.scss";
 
@@ -15,6 +16,7 @@ interface CodeFormProps {
 }
 
 export default function CodeForm({ formStep, nextFormStep }: CodeFormProps) {
+  const selectedFormData = makeFormFields(formStep);
   const [text, setText] = useState<string>("");
 
   const { setFormValues } = useFormData();
@@ -42,11 +44,11 @@ export default function CodeForm({ formStep, nextFormStep }: CodeFormProps) {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className={styles.formCard}>
-        <div>
-          <label htmlFor="code">Code</label>
+        <div className={styles.formField}>
+          <label htmlFor="code">{selectedFormData?.title}</label>
           <TextInput
             value={text}
-            name="code"
+            name={selectedFormData?.name ?? ""}
             onChange={handleTextChange}
             showReset={false}
             register={register}
@@ -56,7 +58,7 @@ export default function CodeForm({ formStep, nextFormStep }: CodeFormProps) {
           )}
         </div>
         <Button type="submit" className={styles.button} variant="contained">
-          Done
+          {selectedFormData?.buttonText}
         </Button>
       </div>
     </form>

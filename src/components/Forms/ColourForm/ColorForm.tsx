@@ -4,6 +4,7 @@ import Button from "../../Button";
 import Selector from "../../Selector";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useColourSchema } from "../../../hooks/useFormValidationSchema";
+import { makeFormFields } from "../../../hooks/getFormSteps";
 import { useFormData } from "../../../context";
 
 import styles from "./styles.module.scss";
@@ -17,6 +18,7 @@ export default function ColourForm({
   formStep,
   nextFormStep,
 }: ColourFormProps) {
+  const selectedFormData = makeFormFields(formStep);
   const { setFormValues } = useFormData();
 
   const {
@@ -42,11 +44,11 @@ export default function ColourForm({
     >
       <div className={styles.formCard}>
         <div className={styles.formField}>
-          <label htmlFor="colour">Colour</label>
+          <label htmlFor="colour">{selectedFormData?.title}</label>
           <Selector
-            options={["BLUE", "BLACK", "RED", "ORANGE"]}
-            name="colour"
-            type="colour"
+            options={selectedFormData?.options ?? []}
+            name={selectedFormData?.name}
+            type={selectedFormData?.type}
             register={register}
           />
 
@@ -57,7 +59,7 @@ export default function ColourForm({
           )}
         </div>
         <Button type="submit" className={styles.button} variant="contained">
-          Next
+          {selectedFormData?.buttonText}
         </Button>
       </div>
     </form>

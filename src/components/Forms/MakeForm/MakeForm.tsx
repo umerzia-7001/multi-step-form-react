@@ -15,6 +15,7 @@ interface MakeFormProps {
 }
 
 export default function MakeForm({ formStep, nextFormStep }: MakeFormProps) {
+  const selectedFormData = makeFormFields(formStep);
   const { setFormValues } = useFormData();
 
   const {
@@ -31,9 +32,6 @@ export default function MakeForm({ formStep, nextFormStep }: MakeFormProps) {
     nextFormStep();
   };
 
-  const selectedFormData = makeFormFields(1);
-  console.log(selectedFormData);
-
   return (
     <form
       className={`${styles.Form} ${
@@ -43,18 +41,11 @@ export default function MakeForm({ formStep, nextFormStep }: MakeFormProps) {
     >
       <div className={styles.formCard}>
         <div className={styles.formField}>
-          <label htmlFor="make">Make</label>
+          <label htmlFor="make">{selectedFormData?.title}</label>
           <Selector
-            options={[
-              "AUDI",
-              "BMW",
-              "VAUXHAL",
-              "MERCEDEDS",
-              "PEUGOT",
-              "RENAULT",
-            ]}
-            name="make"
-            type="make"
+            options={selectedFormData?.options ?? []}
+            name={selectedFormData?.name}
+            type={selectedFormData?.type}
             register={register}
           />
 
@@ -63,7 +54,7 @@ export default function MakeForm({ formStep, nextFormStep }: MakeFormProps) {
           )}
         </div>
         <Button type="submit" className={styles.button} variant="contained">
-          Next
+          {selectedFormData?.buttonText}
         </Button>
       </div>
     </form>
