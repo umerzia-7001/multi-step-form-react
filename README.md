@@ -6,7 +6,7 @@
 </b>
 
 <video width="320" height="340" controls>
-  <source src="(https://drive.google.com/file/d/13lYwynfWezKqd6pgPXZwNJXq8ZWelT1_/view?usp=sharing)" type="video/mp4">
+  <source src="https://drive.google.com/file/d/13lYwynfWezKqd6pgPXZwNJXq8ZWelT1_/view?usp=sharing" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
